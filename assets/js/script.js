@@ -27,3 +27,28 @@ jQuery("#carousel").owlCarousel({
 });
 $( ".owl-prev").html('<i class="fa fa-chevron-left"></i>');
 $( ".owl-next").html('<i class="fa fa-chevron-right"></i>');
+
+const cursor = document.querySelector(".cursor");
+const links = document.querySelectorAll(".testimonial-section");
+const navlinks = document.querySelectorAll(".testimonial-section");
+var x,y;
+$(".testimonial-section").mousemove(function(event) {
+  var offset = $(this).offset();
+  x = event.pageX - offset.left;
+  y = event.pageY - offset.top;
+  cursor.style.left = x + "px";
+  cursor.style.top = y + "px";
+  cursor.style.display = "block!important";
+});
+$(".testimonial-section .cursor").hide();
+$(window).mousemove(function(event) {
+  let iy = event.pageY - $(".testimonial-section").offset().top;
+  console.log($(".testimonial-section").height() + 180);
+  // console.log($(".testimonial-section").offset().top);
+  // console.log(iy);
+  if (iy > 0 && iy < $(".testimonial-section").height() + 180 ) {
+    $(".testimonial-section .cursor").show(); 
+  }else{
+    $(".testimonial-section .cursor").hide();
+  }
+});
